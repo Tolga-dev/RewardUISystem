@@ -1,17 +1,18 @@
 using System.Collections;
+using Core;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class CoinReward : MonoBehaviour
+public class CoinReward : Singleton<CoinReward>
 {
-    public static CoinReward CoinRewardInstance;
     [SerializeField] private GameObject pileOfCoins;
     [SerializeField] private TextMeshProUGUI counter;
     [SerializeField] private Vector2[] initialPos;
+    
     [SerializeField] private Quaternion[] initialRotation;
     [SerializeField] private int coinsAmount;
-    void Start()
+    private void Start()
     {
         
         if (coinsAmount == 0) 
@@ -24,11 +25,8 @@ public class CoinReward : MonoBehaviour
         {
             initialPos[i] = pileOfCoins.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition;
             initialRotation[i] = pileOfCoins.transform.GetChild(i).GetComponent<RectTransform>().rotation;
-        }
-
-        CoinRewardInstance = this;
+        } 
     }
-
 
    public void CountCoins()
     {

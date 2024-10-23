@@ -25,7 +25,7 @@ public class rewardSystem : MonoBehaviour
 
     public void GetTheReward()
     {
-        CoinReward.CoinRewardInstance.CountCoins();
+        CoinReward.Instance.CountCoins();
         handAnim.enabled = false;
     }
 }
