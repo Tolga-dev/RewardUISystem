@@ -27,7 +27,7 @@ public class CoinReward : Singleton<CoinReward>
         canDoAnim = false;
         
         pileOfCoins.SetActive(true);
-
+        
         AnimateHand();
         AnimateCoins();
         AnimateCounter();
