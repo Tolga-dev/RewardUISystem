@@ -1,32 +1,32 @@
 using System;
+using Controllers;
 using TMPro;
 using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
+    public HandController hand;
+
+    public TextMeshProUGUI currentBonusText;
+    public TextMeshProUGUI currentScoreText;
+    public float currentBonus;
+
+    public float currentScore; // u can add this to game play state 
     
-    [SerializeField] private TextMeshProUGUI rewardToShow;
-    [SerializeField] private Transform Hand;
-    [SerializeField] private Animator handAnim;
-    void Start()
+    public void Start()
     {
-        handAnim = GetComponent<Animator>();
+        currentBonusText.text = currentBonus.ToString("f0");
+        currentScoreText.text = currentScore.ToString("f0");
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("rewardNo"))
-        {
-            var multiplier = other.gameObject.name;
-
-            rewardToShow.text = (500 * float.Parse(multiplier)).ToString();
-            PlayerPrefs.SetFloat("reward",float.Parse( rewardToShow.text));
-        }
-    }
-
-    public void GetTheReward()
+    public void GetTheReward() // call from button
     {
         CoinReward.Instance.CountCoins();
-        handAnim.enabled = false;
     }
+    public void AddReward(float reward)
+    {
+        currentScore += reward;
+        currentScoreText.text = currentScore.ToString("f0");
+    }
+    
 }
