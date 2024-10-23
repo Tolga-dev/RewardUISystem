@@ -19,7 +19,7 @@ namespace Controllers
             if (other.CompareTag("rewardNo"))
             {
                 var childIndex = other.transform.GetSiblingIndex() + 1;
-                foundBonus = rewardManager.currentBonus * childIndex * 1.5f;
+                foundBonus = rewardManager.currentBonus * childIndex;
                 rewardToShow.text = (foundBonus).ToString("F0");
             }
         }
